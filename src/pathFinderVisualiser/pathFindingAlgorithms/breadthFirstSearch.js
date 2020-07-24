@@ -2,16 +2,16 @@ export function bfs(grid = [], startNode, finishNode) {
     const queue = [];
     const visitedNodesInOrder = [];
 
-    startNode.isVisited = true;
-    queue.push(startNode);
+    startNode.isVisited = true; //isVisited is a property of node
+    queue.push(startNode); //grid[i][j]
 
-    while (!!queue.length) {
-        let node = queue.shift();
+    while (!!queue.length) { // why !!
+        let node = queue.shift(); //pop
 
         if (finishNode === node)
             return [visitedNodesInOrder, calculatePath(finishNode)];
 
-        if (node.isWall) continue;
+        if (node.isWall) continue; //grid[i][j] = 1;
 
         const neighbors = getAllNeighbors(grid, node);
 
@@ -30,7 +30,7 @@ function calculatePath(finishNode) {
     const shortestPathNodes = [];
     let currentNode = finishNode;
     while (currentNode !== null) {
-        shortestPathNodes.unshift(currentNode);
+        shortestPathNodes.unshift(currentNode);//adding
         currentNode = currentNode.previousNode;
     }
     return shortestPathNodes;
